@@ -16,7 +16,7 @@ export const NavList = styled.ul`
 export const NavItem = styled.li``;
 
 export const NavLink = styled.a`
-  color: white;
+  color: #ffffff;
   text-decoration: none;
 
   &:hover {
