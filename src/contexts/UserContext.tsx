@@ -6,10 +6,19 @@ interface User {
   email?: string;
 }
 
+interface CartItem {
+  id: number;
+  name: string;
+  price: string;
+}
+
 interface UserContextProps {
   user: User | null;
   setUser: React.Dispatch<React.SetStateAction<User | null>>;
   logout: () => void;
+  cartItems: CartItem[];
+  addToCart: (item: CartItem) => void;
+  removeFromCart: (itemId: number) => void;
 }
 
 interface UserProviderProps {
@@ -18,15 +27,24 @@ interface UserProviderProps {
 
 const UserContext = createContext<UserContextProps | undefined>(undefined);
 
-export const UserProvider: React.FC<UserProviderProps> = ({children}) => {
+export const UserProvider = ({children}:UserProviderProps) => {
   const [user, setUser] = useState<User | null>(null);
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
   const logout = () => {
     setUser(null);
   };
 
+  const addToCart = (item: CartItem) => {
+    setCartItems((prevItems) => [...prevItems, item]);
+  };
+
+  const removeFromCart = (itemId: number) => {
+    setCartItems((prevItems) => prevItems.filter(item => item.id !== itemId));
+  };
+
   return (
-    <UserContext.Provider value={{ user, setUser, logout }}>
+    <UserContext.Provider value={{ user, setUser, logout, cartItems, addToCart, removeFromCart, }}>
       {children}
     </UserContext.Provider>
   );

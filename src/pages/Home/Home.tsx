@@ -1,7 +1,11 @@
+import ProductCarousel from "../../components/Carousel/Carousel"
 
 const Home = () => {
   return (
-    <div>Olá, usuário</div>
+    <>
+      <div>Olá, usuário</div>
+      <ProductCarousel/>
+    </>
   )
 }
 

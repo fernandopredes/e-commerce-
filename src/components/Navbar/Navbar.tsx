@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 import { Nav, NavConteiner, NavItem, NavLink, NavList, User } from './NavbarStyles';
-import { useUser } from '../contexts/UserContext';
+import { useUser } from '../../contexts/UserContext';
 import { useNavigate } from 'react-router-dom';
-import logo from '../assets/logo.png'
+import logo from '../../assets/logo.png'
 
 const Navbar = () => {
   const { user, logout } = useUser();

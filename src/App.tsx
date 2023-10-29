@@ -1,7 +1,7 @@
 import { BrowserRouter } from "react-router-dom"
 import { Router } from "./Router"
 import { createGlobalStyle } from "styled-components";
-import Navbar from "./components/Navbar";
+import Navbar from "./components/Navbar/Navbar";
 import { UserProvider } from "./contexts/UserContext";
 
 const GlobalStyle = createGlobalStyle`
