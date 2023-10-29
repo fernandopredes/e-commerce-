@@ -27,3 +27,31 @@ export const fetchProductDetails = (productId: any) => {
       console.error('Erro ao buscar detalhes do produto:', error);
     });
 };
+
+export const fetchCategories = () => {
+  return fetch(`${BASE_URL}/categories/`)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Erro na rede ao buscar as categorias.');
+      }
+      return response.json();
+    })
+    .catch(error => {
+      console.error('Erro ao buscar as categorias:', error);
+      return [];
+    });
+};
+
+export const fetchItemsByCategory = (categoryId: any) => {
+  return fetch(`${BASE_URL}/categories/${categoryId}/items`)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Erro na rede ao buscar os itens da categoria.');
+      }
+      return response.json();
+    })
+    .catch(error => {
+      console.error('Erro ao buscar os itens da categoria:', error);
+      return [];
+    });
+};

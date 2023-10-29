@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+import styled, { keyframes } from 'styled-components';
 
 export const Nav = styled.nav`
   margin: 0 auto;
@@ -72,4 +73,60 @@ export const CartCount = styled.span`
   align-items: center;
   justify-content: center;
   padding: 2px;
+`;
+
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
+
+export const DropdownMenu = styled.ul`
+  position: absolute;
+  top: 68px;
+  right: 90px;
+  z-index: 55;
+  width: 200px;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  animation: ${fadeIn} 0.3s forwards;
+`;
+
+export const DropdownMenuItem = styled.li`
+  padding: 10px;
+  cursor: pointer;
+  &:hover {
+    background-color: #f5f5f5;
+  }
+`;
+
+export const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: #333;
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+
+export const StyledButton = styled.button`
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1em;
+  color: white;
+  margin: 0;
+  margin-bottom: 1rem;
+  font-family: 'Roboto', sans-serif;
+  &:hover {
+    text-decoration: underline;
+  }
+  &:focus {
+    outline: none;
+  }
 `;

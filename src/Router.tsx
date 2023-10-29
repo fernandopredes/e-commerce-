@@ -5,6 +5,7 @@ import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import styled from 'styled-components';
 import ProductDetails from "./pages/ProductDetails/ProducDetails";
+import { CategoryPage } from "./pages/Category/CategoryPage";
 
 const Container = styled.div`
   max-width: 1400px;
@@ -27,6 +28,7 @@ export const Router = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/product/:id" element={<ProductDetails />} />
+          <Route path="/category/:id" element={<CategoryPage />} />
       </Routes>
     </Container>
   )
