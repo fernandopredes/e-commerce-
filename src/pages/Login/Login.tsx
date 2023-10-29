@@ -3,6 +3,9 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Container, ErrorText, FormContainer, StyledButton, StyledForm, StyledInput } from './FormStyles';
 import { Link } from 'react-router-dom';
+import { useUser } from '../../contexts/UserContext';
+import { useNavigate } from 'react-router-dom';
+
 
 const loginSchema = yup.object().shape({
   email: yup.string().email("E-mail inválido").required("E-mail é obrigatório"),
@@ -15,14 +18,18 @@ type FormData = {
 };
 
 const Login = () => {
+  const { setUser } = useUser();
+
   const { register, handleSubmit, formState } = useForm<FormData>({
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     resolver: yupResolver(loginSchema) as any
   })
   const { errors } = formState;
+  const navigate = useNavigate();
 
   const onSubmit = (data: FormData) => {
-    console.log(data)
+    setUser({ fullName: "Usuário", email: data.email });
+    navigate('/');
   }
 
   return (

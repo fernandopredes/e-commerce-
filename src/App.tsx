@@ -2,6 +2,7 @@ import { BrowserRouter } from "react-router-dom"
 import { Router } from "./Router"
 import { createGlobalStyle } from "styled-components";
 import Navbar from "./components/Navbar";
+import { UserProvider } from "./contexts/UserContext";
 
 const GlobalStyle = createGlobalStyle`
   html {
@@ -12,12 +13,14 @@ const GlobalStyle = createGlobalStyle`
 function App() {
 
   return (
-    <BrowserRouter>
-      <GlobalStyle/>
-      <Navbar />
-      <Router />
-      {/* <Footer /> */}
-    </BrowserRouter>
+    <UserProvider>
+      <BrowserRouter>
+        <GlobalStyle/>
+        <Navbar />
+        <Router />
+        {/* <Footer /> */}
+      </BrowserRouter>
+    </UserProvider>
   )
 }
 
