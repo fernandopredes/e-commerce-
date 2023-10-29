@@ -26,6 +26,9 @@ export const StyledImage = styled.img`
 export const ProductInfoContainer = styled.div`
   display: flex;
   flex-direction: column;
+  h3{
+    color: black;
+  }
 `;
 
 export const StyledProductName = styled.h2`

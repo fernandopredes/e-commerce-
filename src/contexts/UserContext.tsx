@@ -10,6 +10,7 @@ interface CartItem {
   id: number;
   name: string;
   price: string;
+  quantity?: number;
 }
 
 interface UserContextProps {
@@ -37,8 +38,12 @@ export const UserProvider = ({children}:UserProviderProps) => {
   };
 
   const addToCart = (item: CartItem) => {
-    setCartItems((prevItems) => [...prevItems, item]);
+    item.quantity = item.quantity || 1;
+
+    setCartItems(prevItems => [...prevItems, item]);
   };
+
+
 
   const removeFromCart = (itemId: number) => {
     setCartItems((prevItems) => prevItems.filter(item => item.id !== itemId));

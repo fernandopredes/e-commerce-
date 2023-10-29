@@ -21,20 +21,39 @@ const ProductDetails = () => {
   const [quantity, setQuantity] = useState(1)
 
   const handleAddToCart = () => {
-    addToCart({
+    const cartItem = {
       id: product!.id,
       name: product!.name,
-      price: product!.price
-    });
-  };
+      price: product!.price,
+      quantity: 1
+    }
+
+    for (let i = 0; i < quantity; i++) {
+      addToCart(cartItem);
+    }
+  }
 
   return (
   <StyledDetailContainer>
     <StyledImage src={product?.url} alt={product?.name} />
     <ProductInfoContainer>
       <StyledProductName>{product?.name}</StyledProductName>
+      <h3>{product?.description}</h3>
       <StyledProductPrice>${product?.price}</StyledProductPrice>
-      <StyledQuantityInput type="number" value={quantity} onChange={e => setQuantity(Number(e.target.value))} />
+      <StyledQuantityInput
+        type="number"
+        min="0"
+        max="15"
+        value={quantity}
+        onChange={e => {
+          const value = Number(e.target.value);
+          if (value >= 0 && value <= 15) {
+            setQuantity(value);
+          } else {
+            alert("Por favor, insira uma quantidade entre 0 e 15.");
+          }
+        }}
+      />
       <StyledAddButton onClick={handleAddToCart}>Adicionar ao carrinho</StyledAddButton>
     </ProductInfoContainer>
   </StyledDetailContainer>
