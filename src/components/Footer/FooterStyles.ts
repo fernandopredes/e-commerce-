@@ -17,6 +17,18 @@ export const FooterContainer = styled.footer`
   color: #fff;
   align-items: center;
   justify-content: center;
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    padding: 15px;
+  }
+
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 10px;
+  }
 `;
 
 export const Column = styled.div`
@@ -27,6 +39,10 @@ export const Column = styled.div`
   color: white;
   a:visited {
   color: white;
+
+  @media (max-width: 480px) {
+    align-items: center;
+  }
 }
 `;
 
