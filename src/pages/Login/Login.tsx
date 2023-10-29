@@ -18,7 +18,7 @@ type FormData = {
 };
 
 const Login = () => {
-  const { setUser } = useUser();
+  const { setUser, clearCart } = useUser();
 
   const { register, handleSubmit, formState } = useForm<FormData>({
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -29,6 +29,7 @@ const Login = () => {
 
   const onSubmit = (data: FormData) => {
     setUser({ fullName: "Usuário", email: data.email });
+    clearCart();
     navigate('/');
   }
 

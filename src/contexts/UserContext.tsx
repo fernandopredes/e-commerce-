@@ -19,6 +19,7 @@ interface UserContextProps {
   cartItems: CartItem[];
   addToCart: (item: CartItem) => void;
   removeFromCart: (itemId: number) => void;
+  clearCart: () => void;
 }
 
 interface UserProviderProps {
@@ -43,8 +44,12 @@ export const UserProvider = ({children}:UserProviderProps) => {
     setCartItems((prevItems) => prevItems.filter(item => item.id !== itemId));
   };
 
+  const clearCart = () => {
+    setCartItems([]);
+  };
+
   return (
-    <UserContext.Provider value={{ user, setUser, logout, cartItems, addToCart, removeFromCart, }}>
+    <UserContext.Provider value={{ user, setUser, logout, cartItems, addToCart, removeFromCart, clearCart }}>
       {children}
     </UserContext.Provider>
   );

@@ -1,16 +1,19 @@
 import { Link } from 'react-router-dom';
-import { Nav, NavConteiner, NavItem, NavLink, NavList, User } from './NavbarStyles';
+import { CartContainer, CartCount, CartIcon, Nav, NavConteiner, NavItem, NavLink, NavList, User } from './NavbarStyles';
 import { useUser } from '../../contexts/UserContext';
 import { useNavigate } from 'react-router-dom';
 import logo from '../../assets/logo.png'
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+
 
 const Navbar = () => {
-  const { user, logout } = useUser();
+  const { user, logout, cartItems, clearCart } = useUser();
   const navigate = useNavigate();
 
   const handleLogout = () => {
     logout();
     navigate('/');
+    clearCart();
   };
 
   return (
@@ -25,6 +28,10 @@ const Navbar = () => {
       </NavConteiner>
       <NavConteiner>
         <NavList>
+          <CartContainer>
+            <CartIcon icon={faShoppingCart} />
+            {cartItems.length > 0 && <CartCount>{cartItems.length}</CartCount>}
+          </CartContainer>
           <NavItem>
               <Link to="/">
                 <NavLink>Home</NavLink>

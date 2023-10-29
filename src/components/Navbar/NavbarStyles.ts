@@ -1,3 +1,4 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styled from 'styled-components';
 
 export const Nav = styled.nav`
@@ -44,4 +45,31 @@ export const NavLink = styled.a`
   &:hover {
     text-decoration: underline;
   }
+`;
+
+export const CartContainer = styled.div`
+  position: relative;
+  display: inline-block;
+`;
+
+export const CartIcon = styled(FontAwesomeIcon)`
+  font-size: 24px;
+  margin-right: 1rem;
+`;
+
+export const CartCount = styled.span`
+ position: absolute;
+  top: -10px;
+  right: -5px;
+  background-color: #ff8400;
+  color: white;
+  border-radius: 50%;
+  font-size: 14px;
+  font-weight: bold;
+  min-width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px;
 `;

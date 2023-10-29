@@ -6,7 +6,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { fetchProducts } from '../../api';
 import { Product } from '../../types/product';
-import ProductCard from '../Card/Card';
+import ProductCard from '../ProductCard/Card';
 
 const ProductCarousel = () => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -16,7 +16,7 @@ const ProductCarousel = () => {
   }, []);
 
   const settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     speed: 500,
     slidesToShow: 3,
@@ -48,7 +48,7 @@ const ProductCarousel = () => {
 
   return (
     <div>
-      <h2>Produtos</h2>
+      <h2>Produtos disponíveis</h2>
       <Slider {...settings}>
         {products.map(product => (
           <ProductCard
@@ -59,6 +59,7 @@ const ProductCarousel = () => {
             quantity={product.quantity}
             url={product.url}
             price={product.price}
+            
           />
         ))}
       </Slider>

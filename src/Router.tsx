@@ -4,11 +4,12 @@ import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import styled from 'styled-components';
+import ProductDetails from "./pages/ProductDetails/ProducDetails";
 
 const Container = styled.div`
   max-width: 1400px;
   margin: 0 auto;
-  padding: 0 20px; 
+  padding: 0 20px;
 `;
 
 export const Router = () => {
@@ -25,6 +26,7 @@ export const Router = () => {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/product/:id" element={<ProductDetails />} />
       </Routes>
     </Container>
   )
