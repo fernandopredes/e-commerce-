@@ -3,6 +3,7 @@ import { Router } from "./Router"
 import { createGlobalStyle } from "styled-components";
 import Navbar from "./components/Navbar/Navbar";
 import { UserProvider } from "./contexts/UserContext";
+import Footer from "./components/Footer/Footer";
 
 const GlobalStyle = createGlobalStyle`
   html {
@@ -18,7 +19,7 @@ function App() {
         <GlobalStyle/>
         <Navbar />
         <Router />
-        {/* <Footer /> */}
+        <Footer />
       </BrowserRouter>
     </UserProvider>
   )

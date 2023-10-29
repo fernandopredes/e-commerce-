@@ -15,6 +15,7 @@ export const StyledButton = styled.button`
 `;
 
 export const CardContainer = styled.div`
+  cursor: pointer;
   border: 1px solid #e0e0e0;
   border-radius: 5px;
   margin: 15px;
