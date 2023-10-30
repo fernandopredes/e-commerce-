@@ -8,6 +8,20 @@ export const Nav = styled.nav`
   justify-content: space-between;
   padding: 1rem 2rem;
   background-color: #333;
+  @media (max-width: 530px) {
+    padding: 0;
+    margin:0 auto;
+    display: block;
+    text-align: center;
+    .options{
+      justify-content: center;
+      padding: 0;
+      margin: 0;
+      ul{
+        padding: 0;
+      }
+    }
+  }
 `;
 
 export const NavConteiner = styled.div`

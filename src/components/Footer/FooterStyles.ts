@@ -37,7 +37,8 @@ export const Column = styled.div`
   flex-direction: column;
   gap: 10px;
   color: white;
-  a:visited {
+
+  :visited {
   color: white;
 
   @media (max-width: 480px) {

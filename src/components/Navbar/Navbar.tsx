@@ -41,7 +41,7 @@ const Navbar = () => {
 
   return (
     <Nav>
-      <NavConteiner>
+      <NavConteiner className='options'>
         <Link to="/">
           <img src={logo} alt="logo" />
         </Link>
@@ -49,7 +49,7 @@ const Navbar = () => {
           {user ? <p>Bem-vindo, {user.email}</p>: null}
         </User>
       </NavConteiner>
-      <NavConteiner>
+      <NavConteiner className='options'>
         <NavList>
           <CartContainer>
             <CartIcon icon={faShoppingCart} />
