@@ -11,6 +11,7 @@ interface CartItem {
   name: string;
   price: string;
   quantity?: number;
+  url?: string;
 }
 
 interface UserContextProps {
@@ -37,16 +38,32 @@ export const UserProvider = ({children}:UserProviderProps) => {
     setUser(null);
   };
 
-  const addToCart = (item: CartItem) => {
-    item.quantity = item.quantity || 1;
+  const addToCart = (newItem: CartItem) => {
+    setCartItems(prevItems => {
+      const itemExists = prevItems.find(item => item.id === newItem.id);
 
-    setCartItems(prevItems => [...prevItems, item]);
+      if (itemExists) {
+        return prevItems.map(item =>
+          item.id === newItem.id ? { ...item, quantity: (item.quantity || 0) + 1 } : item
+        );
+      } else {
+        return [...prevItems, { ...newItem, quantity: 1 }];
+      }
+    });
   };
 
-
-
   const removeFromCart = (itemId: number) => {
-    setCartItems((prevItems) => prevItems.filter(item => item.id !== itemId));
+    setCartItems(prevItems => {
+      const itemExists = prevItems.find(item => item.id === itemId);
+
+      if (itemExists && itemExists.quantity! > 1) {
+        return prevItems.map(item =>
+          item.id === itemId ? { ...item, quantity: item.quantity! - 1 } : item
+        );
+      } else {
+        return prevItems.filter(item => item.id !== itemId);
+      }
+    });
   };
 
   const clearCart = () => {

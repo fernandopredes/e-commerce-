@@ -65,6 +65,7 @@ export const NavLink = styled.a`
 export const CartContainer = styled.div`
   position: relative;
   display: inline-block;
+  cursor: pointer;
 `;
 
 export const CartIcon = styled(FontAwesomeIcon)`

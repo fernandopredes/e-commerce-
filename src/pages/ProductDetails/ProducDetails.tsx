@@ -25,6 +25,7 @@ const ProductDetails = () => {
       id: product!.id,
       name: product!.name,
       price: product!.price,
+      url: product!.url,
       quantity: 1
     }
 

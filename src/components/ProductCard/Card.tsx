@@ -10,7 +10,7 @@ const ProductCard = ({ id, name, description, url, price }:Product) => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleAddToCart = (e:any) => {
     e.stopPropagation();
-    addToCart({ id, name, price });
+    addToCart({ id, name, price, url });
   };
 
   const handleClick = () => {
