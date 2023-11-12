@@ -7,6 +7,7 @@ import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { useEffect, useRef, useState } from 'react';
 import { fetchCategories } from '../../api';
 import { Category } from '../../types/category';
+import CartModal from '../CartModal/CartModal';
 
 
 const Navbar = () => {
@@ -15,6 +16,7 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
   const menuRef = useRef<HTMLUListElement>(null);
+  const [isCartOpen, setIsCartOpen] = useState(false);
 
   useEffect(() => {
     fetchCategories().then(data => setCategories(data));
@@ -39,8 +41,16 @@ const Navbar = () => {
     clearCart();
   };
 
+  const openCart = () => setIsCartOpen(true);
+  const closeCart = () => setIsCartOpen(false);
+
+  const totalQuantity = cartItems.reduce((total, item) => {
+    return total + (item.quantity || 0);
+  }, 0);
+
   return (
     <Nav>
+      <CartModal isOpen={isCartOpen} onClose={closeCart}/>
       <NavConteiner className='options'>
         <Link to="/">
           <img src={logo} alt="logo" />
@@ -51,9 +61,9 @@ const Navbar = () => {
       </NavConteiner>
       <NavConteiner className='options'>
         <NavList>
-          <CartContainer>
+          <CartContainer onClick={openCart}>
             <CartIcon icon={faShoppingCart} />
-            {cartItems.length > 0 && <CartCount>{cartItems.length}</CartCount>}
+            {cartItems.length > 0 && <CartCount>{totalQuantity}</CartCount>}
           </CartContainer>
           <NavItem>
               <Link to="/">
