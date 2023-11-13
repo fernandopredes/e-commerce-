@@ -38,27 +38,38 @@ export const ModalWrapper = styled.div<CartModalContainerProps>`
     transition: opacity 0.5s;
 `;
 
-
 export const ModalContent = styled.div<CartModalContainerProps>`
     width: 300px;
-    height: 100%;
+    max-height: 100vh;
     background-color: black;
     box-shadow: -2px 0px 5px rgba(0, 0, 0, 0.5);
     padding: 20px;
     z-index: 1000;
     animation: ${props => props.isOpen ? slideIn : slideOut} 0.5s forwards;
+    display: flex;
+    flex-direction: column;
+`;
 
+export const ModalHeader = styled.div`
+
+`;
+
+export const ItemsContainer = styled.div`
+    overflow-y: auto;
+    flex-grow: 1;
     img{
-      max-width: 7rem;
+      max-width: 6rem;
       border-radius: 25px;
     }
-    .conteiner-cart{
+
+    .conteiner-cart {
       display: flex;
       align-items: center;
       justify-content: space-around;
+      margin-bottom: 10px;
     }
-    .data{
-      max-width: 7rem;
+    .data {
+      max-width: 8rem;
       text-align: center;
     }
 `;
