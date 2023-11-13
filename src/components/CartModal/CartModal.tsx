@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useUser } from "../../contexts/UserContext";
-import { ModalContent, ModalWrapper, StyledLink } from "./CartModalStyles";
+import { ItemsContainer, ModalContent, ModalHeader, ModalWrapper, StyledLink } from "./CartModalStyles";
 import { StyledButton } from "../ProductCard/CardStyles";
 import { useDispatch } from 'react-redux';
 import { setCartTotal } from "../../features/cart/cartTotalSlice";
@@ -36,7 +36,10 @@ const CartModal = ({ isOpen, onClose }: Props) => {
     return (
         <ModalWrapper isOpen={isOpen} onClick={onClose}>
             <ModalContent isOpen={isOpen} onClick={e => e.stopPropagation()}>
-                <h2>Carrinho de Compras</h2>
+                <ModalHeader>
+                  <h2>Carrinho de Compras</h2>
+                </ModalHeader>
+                <ItemsContainer>
                 {cartItems.length === 0 ? (
                     <p>O carrinho está vazio</p>
                 ) : (
@@ -56,6 +59,7 @@ const CartModal = ({ isOpen, onClose }: Props) => {
                       <StyledLink to={'/payment'} onClick={onClose}>Ir para o pagamento</StyledLink>
                   </>
                 )}
+                </ItemsContainer>
             </ModalContent>
         </ModalWrapper>
     );
