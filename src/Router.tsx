@@ -6,6 +6,7 @@ import Register from "./pages/Register/Register";
 import styled from 'styled-components';
 import ProductDetails from "./pages/ProductDetails/ProducDetails";
 import { CategoryPage } from "./pages/Category/CategoryPage";
+import PayPalPayment from "./pages/PayPalPayment/PayPalPayment";
 
 const Container = styled.div`
   max-width: 1400px;
@@ -29,6 +30,7 @@ export const Router = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/product/:id" element={<ProductDetails />} />
           <Route path="/category/:id" element={<CategoryPage />} />
+          <Route path="/payment" element={<PayPalPayment />} />
       </Routes>
     </Container>
   )

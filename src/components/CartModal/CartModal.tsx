@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
 import { useUser } from "../../contexts/UserContext";
-import { ModalContent, ModalWrapper } from "./CartModalStyles";
+import { ModalContent, ModalWrapper, StyledLink } from "./CartModalStyles";
 import { StyledButton } from "../ProductCard/CardStyles";
 import { useDispatch } from 'react-redux';
 import { setCartTotal } from "../../features/cart/cartTotalSlice";
-
-
 
 type Props = {
   isOpen: boolean;
@@ -55,7 +53,7 @@ const CartModal = ({ isOpen, onClose }: Props) => {
                           </div>
                       ))}
                       <h3>Total: R${totalPrice.toFixed(2)}</h3>
-                      <StyledButton>Ir para o pagamento</StyledButton>
+                      <StyledLink to={'/payment'} onClick={onClose}>Ir para o pagamento</StyledLink>
                   </>
                 )}
             </ModalContent>
