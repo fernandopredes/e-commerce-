@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
 
 interface CartModalContainerProps {
@@ -61,3 +62,20 @@ export const ModalContent = styled.div<CartModalContainerProps>`
       text-align: center;
     }
 `;
+
+export const StyledLink = styled(Link)`
+ padding: 10px;
+  background-color: #ff8400;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  &:link, &:visited, &:hover, &:active, &:focus {
+    color: #ffffff;
+  }
+
+  &:hover {
+    background-color: #ff5900;
+  }
+`
