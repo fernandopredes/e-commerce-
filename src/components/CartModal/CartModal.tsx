@@ -2,6 +2,10 @@ import { useEffect, useState } from "react";
 import { useUser } from "../../contexts/UserContext";
 import { ModalContent, ModalWrapper } from "./CartModalStyles";
 import { StyledButton } from "../ProductCard/CardStyles";
+import { useDispatch } from 'react-redux';
+import { setCartTotal } from "../../features/cart/cartTotalSlice";
+
+
 
 type Props = {
   isOpen: boolean;
@@ -11,23 +15,25 @@ type Props = {
 const CartModal = ({ isOpen, onClose }: Props) => {
     const { cartItems, removeFromCart } = useUser();
     const [shouldRender, setShouldRender] = useState(isOpen);
+    const dispatch = useDispatch();
+
+    const totalPrice = cartItems.reduce((total, item) => {
+      return total + (item.quantity || 0) * parseFloat(item.price);
+    }, 0);
 
     useEffect(() => {
         if (isOpen) {
             setShouldRender(true);
+            dispatch(setCartTotal(totalPrice));
         } else {
             const timer = setTimeout(() => {
                 setShouldRender(false);
             }, 500);
             return () => clearTimeout(timer);
         }
-    }, [isOpen]);
+    }, [isOpen, cartItems, totalPrice, dispatch]);
 
     if (!shouldRender) return null;
-
-    const totalPrice = cartItems.reduce((total, item) => {
-          return total + (item.quantity || 0) * parseFloat(item.price);
-      }, 0);
 
     return (
         <ModalWrapper isOpen={isOpen} onClick={onClose}>
