@@ -6,7 +6,6 @@ import { UserProvider } from "./contexts/UserContext";
 import Footer from "./components/Footer/Footer";
 import { Provider } from "react-redux";
 import { store } from "./app/store";
-import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 
 const GlobalStyle = createGlobalStyle`
   html {
@@ -14,16 +13,9 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const initialOptions = {
-  clientId: import.meta.env.VITE_PAYPAL_CLIENT_ID,
-  currency: "BRL",
-  intent: "capture",
-};
-
 function App() {
 
   return (
-    <PayPalScriptProvider options={initialOptions}>
       <Provider store={store}>
         <UserProvider>
           <BrowserRouter>
@@ -34,7 +26,6 @@ function App() {
           </BrowserRouter>
         </UserProvider>
       </Provider>
-    </PayPalScriptProvider>
   )
 }
 

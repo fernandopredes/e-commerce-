@@ -3,7 +3,7 @@ import { useUser } from "../../contexts/UserContext";
 import { ItemsContainer, ModalContent, ModalHeader, ModalWrapper, StyledLink } from "./CartModalStyles";
 import { StyledButton } from "../ProductCard/CardStyles";
 import { useDispatch } from 'react-redux';
-import { setCartTotal } from "../../features/cart/cartTotalSlice";
+import { setSubtotal } from "../../features/cart/cartTotalSlice";
 
 type Props = {
   isOpen: boolean;
@@ -22,7 +22,7 @@ const CartModal = ({ isOpen, onClose }: Props) => {
     useEffect(() => {
         if (isOpen) {
             setShouldRender(true);
-            dispatch(setCartTotal(totalPrice));
+            dispatch(setSubtotal(totalPrice));
         } else {
             const timer = setTimeout(() => {
                 setShouldRender(false);
@@ -56,7 +56,7 @@ const CartModal = ({ isOpen, onClose }: Props) => {
                           </div>
                       ))}
                       <h3>Total: R${totalPrice.toFixed(2)}</h3>
-                      <StyledLink to={'/payment'} onClick={onClose}>Ir para o pagamento</StyledLink>
+                      <StyledLink to={'/cart'} onClick={onClose}>Ir para o pagamento</StyledLink>
                   </>
                 )}
                 </ItemsContainer>
