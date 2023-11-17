@@ -45,6 +45,11 @@ export const StyledButton = styled.button`
   &:hover {
     background-color: #ff5900;
   }
+  &:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
 `;
 
 export const StyledCheckboxLabel = styled.label`

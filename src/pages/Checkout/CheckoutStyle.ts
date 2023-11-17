@@ -1,20 +1,45 @@
 import styled from 'styled-components';
 
-export const StyledDiv = styled.div`
-    margin-bottom: 8vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+export const StyledH2 = styled.div`
+    text-align: center;
+    font-size: 30px;
+`
 
-    h2{
-      font-size: 36px;
+export const StyledDiv = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: row;
+    gap: 2rem;
+    margin-bottom: 8vh;
+
+    .checkout-content {
+        display: flex;
+        width: 800px;
+        justify-content: space-around;
+    }
+
+    h2 {
+        font-size: 36px;
+        margin-bottom: 2rem;
+    }
+
+    .payment-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        width: 260px;
+        background-color: #333;
+        padding: 2rem;
     }
 
     .items {
         width: 260px;
-        margin: 0 auto;
         background-color: #333;
         padding: 2rem;
+
+        height: 420px;
+        overflow-y: auto;
     }
 
     .item {
@@ -36,4 +61,4 @@ export const StyledDiv = styled.div`
             align-items: center;
         }
     }
-`
+`;
