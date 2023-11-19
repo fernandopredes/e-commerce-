@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import ProductDetails from "./pages/ProductDetails/ProducDetails";
 import { CategoryPage } from "./pages/Category/CategoryPage";
 import Checkout from "./pages/Checkout/Checkout";
+import OrderConfirmation from "./pages/OrderConfirmation/OrderConfirmation";
 
 const Container = styled.div`
   max-width: 1400px;
@@ -31,6 +32,7 @@ export const Router = () => {
           <Route path="/product/:id" element={<ProductDetails />} />
           <Route path="/category/:id" element={<CategoryPage />} />
           <Route path="/cart" element={<Checkout />} />
+          <Route path="/checkout" element={<OrderConfirmation />} />
       </Routes>
     </Container>
   )
