@@ -11,7 +11,7 @@ type Props = {
 }
 
 const CartModal = ({ isOpen, onClose }: Props) => {
-    const { cartItems, removeFromCart } = useUser();
+    const { cartItems, removeFromCart, user } = useUser();
     const [shouldRender, setShouldRender] = useState(isOpen);
     const dispatch = useDispatch();
 
@@ -56,7 +56,9 @@ const CartModal = ({ isOpen, onClose }: Props) => {
                           </div>
                       ))}
                       <h3>Total: R${totalPrice.toFixed(2)}</h3>
-                      <StyledLink to={'/cart'} onClick={onClose}>Ir para o pagamento</StyledLink>
+                      {user?.email ? <StyledLink to={'/cart'} onClick={onClose}>Ir para o pagamento</StyledLink>
+                      :
+                      <StyledLink to={'/login'} onClick={onClose}>Faça o login para continuar</StyledLink>}
                   </>
                 )}
                 </ItemsContainer>

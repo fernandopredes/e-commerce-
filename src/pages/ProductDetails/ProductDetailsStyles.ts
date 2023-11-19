@@ -13,6 +13,12 @@ export const StyledDetailContainer = styled.div`
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   max-width: 600px;
   margin: 60px auto;
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 20px;
+  }
 `;
 
 export const StyledImage = styled.img`
@@ -21,6 +27,12 @@ export const StyledImage = styled.img`
   object-fit: cover;
   border-radius: 8px;
   margin-right: 40px;
+  @media (max-width: 768px) {
+    width: 100%;
+    height: auto;
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
 `;
 
 export const ProductInfoContainer = styled.div`
@@ -35,6 +47,9 @@ export const StyledProductName = styled.h2`
   font-size: 28px;
   margin-bottom: 10px;
   color: #333;
+  @media (max-width: 768px) {
+    font-size: 24px;
+  }
 `;
 
 export const StyledProductPrice = styled.p`
@@ -42,6 +57,9 @@ export const StyledProductPrice = styled.p`
   margin-bottom: 20px;
   color: #555;
   font-weight: bold;
+  @media (max-width: 768px) {
+    font-size: 20px;
+  }
 `;
 
 export const StyledQuantityInput = styled.input`

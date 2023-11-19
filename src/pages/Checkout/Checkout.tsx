@@ -1,19 +1,23 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useUser } from '../../contexts/UserContext';
 import { RootState } from "../../app/store";
 import { setCartTotal, setDiscount, setPaymentMethod } from '../../features/cart/cartTotalSlice';
 import { StyledDiv, StyledH2 } from "./CheckoutStyle";
 import { StyledButton } from '../Login/FormStyles';
+import { useNavigate } from 'react-router-dom';
 
 
 const Checkout = () => {
     const dispatch = useDispatch();
     const { cartItems } = useUser();
     const subtotal = useSelector((state: RootState) => state.cartTotal.subtotal);
+    const paymentMethodInStore = useSelector((state: RootState) => state.cartTotal.paymentMethod);
     const [couponCode, setCouponCode] = useState('');
     const [localDiscount, setLocalDiscount] = useState(0);
     const [selectedPaymentMethod, setSelectedPaymentMethod] = useState('');
+    const navigate = useNavigate();
+    const [shouldNavigate, setShouldNavigate] = useState(false);
 
     const applyCoupon = () => {
         if (couponCode === 'DESC10') {
@@ -29,11 +33,20 @@ const Checkout = () => {
         }
     };
 
+    const finalTotal = subtotal - localDiscount;
+
     const handleCheckout = () => {
-      dispatch(setPaymentMethod(selectedPaymentMethod));
+      dispatch(setPaymentMethod(selectedPaymentMethod))
+      setShouldNavigate(true)
     };
 
-    const finalTotal = subtotal - localDiscount;
+    useEffect(() => {
+      if (shouldNavigate && paymentMethodInStore === selectedPaymentMethod) {
+          setShouldNavigate(false);
+          navigate('/checkout')
+      }
+    }, [shouldNavigate, paymentMethodInStore, selectedPaymentMethod, navigate])
+
 
     return (
         <>
