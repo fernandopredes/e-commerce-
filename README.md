@@ -1,28 +1,52 @@
-# React + TypeScript + Vite
+# 👻 Ghost Store
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Bem-vindo ao repositório da Ghost Store, um projeto de  loja online especializada em equipamentos para detecção de fantasmas. Este projeto é desenvolvido com React e Vite e utiliza a [Ghost Hunting API](https://github.com/fernandopredes/ghost-store) para exibir produtos e gerenciar o carrinho de compras.
 
-Currently, two official plugins are available:
+## 🚀 Começando
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Essas instruções para fins de desenvolvimento e teste do projeto localmente.
 
-## Expanding the ESLint configuration
+### Pré-requisitos
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+O que você precisa para instalar o software:
 
-- Configure the top-level `parserOptions` property like this:
+- [Node.js](https://nodejs.org/)
+- [npm](https://www.npmjs.com/) ou [yarn](https://yarnpkg.com/)
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
+### Instalação
+
+Siga estes passos para rodar o projeto em sua máquina:
+
+1. Clone o repositório:
+
+```bash
+git clone https://github.com/fernandopredes/ghost-store.git
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
-# e-commerce-
+2. Navegue até a pasta do projeto:
+
+```bash
+cd ghost-store
+```
+
+3. Instale as dependências:
+
+```bash
+npm install
+# ou
+yarn install
+```
+
+4. Execute o projeto:
+
+```bash
+npm run dev
+# ou
+yarn dev
+```
+
+### Funcionalidades
+
+  -Navegação intuitiva para visualização de produtos.
+  -Adição/ remoção de produtos ao carrinho de compras.
+  -🎉 Desconto Especial: Utilize o código DESC10 no checkout para obter 10% de desconto em sua compra.
