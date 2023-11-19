@@ -4,12 +4,14 @@ interface CartTotalState {
   total: number;
   subtotal: number;
   discount: number;
+  paymentMethod: string;
 }
 
 const initialState: CartTotalState = {
   total: 0,
   subtotal: 0,
   discount: 0,
+  paymentMethod: '',
 };
 
 export const cartTotalSlice = createSlice({
@@ -25,9 +27,12 @@ export const cartTotalSlice = createSlice({
     setDiscount: (state, action: PayloadAction<number>) => {
       state.discount = action.payload;
     },
+    setPaymentMethod: (state, action: PayloadAction<string>) => {
+      state.paymentMethod = action.payload;
+    },
   },
 });
 
-export const { setCartTotal, setSubtotal, setDiscount } = cartTotalSlice.actions;
+export const { setCartTotal, setSubtotal, setDiscount, setPaymentMethod } = cartTotalSlice.actions;
 
 export default cartTotalSlice.reducer;

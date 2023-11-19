@@ -2,9 +2,10 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useUser } from '../../contexts/UserContext';
 import { RootState } from "../../app/store";
-import { setCartTotal, setDiscount } from '../../features/cart/cartTotalSlice';
+import { setCartTotal, setDiscount, setPaymentMethod } from '../../features/cart/cartTotalSlice';
 import { StyledDiv, StyledH2 } from "./CheckoutStyle";
 import { StyledButton } from '../Login/FormStyles';
+
 
 const Checkout = () => {
     const dispatch = useDispatch();
@@ -12,7 +13,7 @@ const Checkout = () => {
     const subtotal = useSelector((state: RootState) => state.cartTotal.subtotal);
     const [couponCode, setCouponCode] = useState('');
     const [localDiscount, setLocalDiscount] = useState(0);
-    const [paymentMethod, setPaymentMethod] = useState('');
+    const [selectedPaymentMethod, setSelectedPaymentMethod] = useState('');
 
     const applyCoupon = () => {
         if (couponCode === 'DESC10') {
@@ -29,7 +30,7 @@ const Checkout = () => {
     };
 
     const handleCheckout = () => {
-
+      dispatch(setPaymentMethod(selectedPaymentMethod));
     };
 
     const finalTotal = subtotal - localDiscount;
@@ -69,8 +70,8 @@ const Checkout = () => {
                               type="radio"
                               name="paymentMethod"
                               value="card"
-                              checked={paymentMethod === 'card'}
-                              onChange={() => setPaymentMethod('card')}
+                              checked={selectedPaymentMethod === 'card'}
+                              onChange={() => setSelectedPaymentMethod('card')}
                           />
                           Cartão de Crédito
                       </label>
@@ -79,13 +80,13 @@ const Checkout = () => {
                               type="radio"
                               name="paymentMethod"
                               value="pix"
-                              checked={paymentMethod === 'pix'}
-                              onChange={() => setPaymentMethod('pix')}
+                              checked={selectedPaymentMethod === 'pix'}
+        onChange={() => setSelectedPaymentMethod('pix')}
                           />
                           Pix
                       </label>
                       <StyledButton
-                          disabled={!paymentMethod}
+                          disabled={!selectedPaymentMethod}
                           onClick={handleCheckout}
                       >
                           Finalizar Compra
