@@ -61,4 +61,24 @@ export const StyledDiv = styled.div`
             align-items: center;
         }
     }
+
+    @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+
+    .payment-info{
+      margin-top: 2rem;
+    }
+
+    .checkout-content {
+      width: 100%;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .payment-info, .items {
+      width: 100%;
+      max-width: 400px;
+    }
+  }
 `;

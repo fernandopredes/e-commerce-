@@ -30,9 +30,10 @@ export const cartTotalSlice = createSlice({
     setPaymentMethod: (state, action: PayloadAction<string>) => {
       state.paymentMethod = action.payload;
     },
+    clearCart: () => initialState,
   },
 });
 
-export const { setCartTotal, setSubtotal, setDiscount, setPaymentMethod } = cartTotalSlice.actions;
+export const { setCartTotal, setSubtotal, setDiscount, setPaymentMethod, clearCart } = cartTotalSlice.actions;
 
 export default cartTotalSlice.reducer;
