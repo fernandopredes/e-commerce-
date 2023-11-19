@@ -47,6 +47,8 @@ yarn dev
 
 ### Funcionalidades
 
-  -Navegação intuitiva para visualização de produtos.
-  -Adição/ remoção de produtos ao carrinho de compras.
-  -🎉 Desconto Especial: Utilize o código DESC10 no checkout para obter 10% de desconto em sua compra.
+1. Navegação intuitiva para visualização de produtos.
+
+2. Adição/ remoção de produtos ao carrinho de compras.
+
+3. 🎉 Desconto Especial: Utilize o código DESC10 no checkout para obter 10% de desconto em sua compra.
