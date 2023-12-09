@@ -56,6 +56,9 @@ const Navbar = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleSearchSubmit = (event: React.FormEvent) => {
     event.preventDefault();
+    if (searchTerm.trim() === '') {
+      return;
+    }
     fetchSearchResults(searchTerm)
       .then(data => {
         setSearchResults(data);
