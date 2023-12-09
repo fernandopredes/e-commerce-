@@ -1,5 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
 import React, { createContext, useContext, useState, ReactNode } from 'react';
+import { Product } from '../types/product';
 
 interface User {
   fullName?: string;
@@ -14,6 +15,11 @@ interface CartItem {
   url?: string;
 }
 
+interface UserProviderProps {
+  children: ReactNode;
+}
+
+
 interface UserContextProps {
   user: User | null;
   setUser: React.Dispatch<React.SetStateAction<User | null>>;
@@ -22,17 +28,17 @@ interface UserContextProps {
   addToCart: (item: CartItem) => void;
   removeFromCart: (itemId: number) => void;
   clearCart: () => void;
+  searchResults: Product[];
+  setSearchResults: React.Dispatch<React.SetStateAction<Product[]>>;
 }
 
-interface UserProviderProps {
-  children: ReactNode;
-}
 
 const UserContext = createContext<UserContextProps | undefined>(undefined);
 
 export const UserProvider = ({children}:UserProviderProps) => {
   const [user, setUser] = useState<User | null>(null);
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [searchResults, setSearchResults] = useState<Product[]>([]);
 
   const logout = () => {
     setUser(null);
@@ -71,7 +77,7 @@ export const UserProvider = ({children}:UserProviderProps) => {
   };
 
   return (
-    <UserContext.Provider value={{ user, setUser, logout, cartItems, addToCart, removeFromCart, clearCart }}>
+    <UserContext.Provider value={{ user, setUser, logout, cartItems, addToCart, removeFromCart, clearCart, searchResults, setSearchResults }}>
       {children}
     </UserContext.Provider>
   );

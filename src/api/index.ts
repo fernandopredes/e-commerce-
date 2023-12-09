@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-const BASE_URL = 'https://ghost-store.onrender.com';
+const BASE_URL = 'http://127.0.0.1:3000';
 
 export const fetchProducts = () => {
   return fetch(`${BASE_URL}/items`)
@@ -52,6 +52,20 @@ export const fetchItemsByCategory = (categoryId: any) => {
     })
     .catch(error => {
       console.error('Erro ao buscar os itens da categoria:', error);
+      return [];
+    });
+};
+
+export const fetchSearchResults = (query:any) => {
+  return fetch(`${BASE_URL}/items/search?query=${encodeURIComponent(query)}`)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Erro na rede ao buscar resultados.');
+      }
+      return response.json();
+    })
+    .catch(error => {
+      console.error('Erro ao buscar resultados:', error);
       return [];
     });
 };
