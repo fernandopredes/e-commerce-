@@ -1,19 +1,20 @@
 import { Link } from 'react-router-dom';
-import { CartContainer, CartCount, CartIcon, DropdownMenu, DropdownMenuItem, Nav, NavConteiner, NavItem, NavLink, NavList, StyledButton, StyledLink, User } from './NavbarStyles';
+import { CartContainer, CartCount, CartIcon, DropdownMenu, DropdownMenuItem, Nav, NavConteiner, NavItem, NavLink, NavList, SearchButton, SearchForm, SearchInput, StyledButton, StyledLink, User } from './NavbarStyles';
 import { useUser } from '../../contexts/UserContext';
 import { useNavigate } from 'react-router-dom';
 import logo from '../../assets/logo.png'
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { useEffect, useRef, useState } from 'react';
-import { fetchCategories } from '../../api';
+import { fetchCategories, fetchSearchResults } from '../../api';
 import { Category } from '../../types/category';
 import CartModal from '../CartModal/CartModal';
 
 
 const Navbar = () => {
-  const { user, logout, cartItems, clearCart } = useUser();
+  const { user, logout, cartItems, clearCart, setSearchResults } = useUser();
   const [categories, setCategories] = useState<Category[]>([]);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();
   const menuRef = useRef<HTMLUListElement>(null);
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -48,6 +49,23 @@ const Navbar = () => {
     return total + (item.quantity || 0);
   }, 0);
 
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(event.target.value);
+  };
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const handleSearchSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+    if (searchTerm.trim() === '') {
+      setSearchResults([])
+      return
+    }
+    fetchSearchResults(searchTerm)
+      .then(data => {
+        setSearchResults(data);
+      });
+  };
+
   return (
     <Nav>
       <CartModal isOpen={isCartOpen} onClose={closeCart}/>
@@ -60,6 +78,10 @@ const Navbar = () => {
         </User>
       </NavConteiner>
       <NavConteiner className='options'>
+      <SearchForm onSubmit={handleSearchSubmit}>
+        <SearchInput type="text" value={searchTerm} onChange={handleSearchChange} placeholder="Buscar itens..." />
+        <SearchButton type="submit">Buscar</SearchButton>
+      </SearchForm>
         <NavList>
           <CartContainer onClick={openCart}>
             <CartIcon icon={faShoppingCart} />

@@ -32,6 +32,11 @@ img{
   max-width: 4rem;
   margin-right: 2rem;
 }
+@media (max-width: 530px) {
+    flex-direction: column;
+    align-items: center;
+
+  }
 `
 
 export const User = styled.div`
@@ -143,5 +148,40 @@ export const StyledButton = styled.button`
   }
   &:focus {
     outline: none;
+  }
+`;
+
+export const SearchForm = styled.form`
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+`;
+
+export const SearchInput = styled.input`
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  &:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+  }
+`;
+
+export const SearchButton = styled.button`
+  background-color: #ff8400;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  &:hover {
+    background-color: #ff5900;
+  }
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
   }
 `;
