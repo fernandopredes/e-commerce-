@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-const BASE_URL = 'https://ghost-store.onrender.com0';
+const BASE_URL = 'https://ghost-store.onrender.com';
 
 export const fetchProducts = () => {
   return fetch(`${BASE_URL}/items`)
