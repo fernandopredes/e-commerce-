@@ -5,29 +5,14 @@ import "slick-carousel/slick/slick-theme.css";
 import { fetchProducts } from '../../api';
 import { Product } from '../../types/product';
 import ProductCard from '../ProductCard/Card';
-import styled, { keyframes } from 'styled-components';
+import Spinner from '../Spinner/Spinner';
 
-const spin = keyframes`
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-`;
-
-const Spinner = styled.div`
-  border: 4px solid rgb(255, 255, 255);
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  border-top: 4px solid black;
-  animation: ${spin} 1s linear infinite;
-`;
 
 const ProductCarousel = () => {
   const [products, setProducts] = useState<Product[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
     fetchProducts().then(data => setProducts(data));
-    setIsLoading(false);
   }, []);
 
   const settings = {
@@ -64,22 +49,25 @@ const ProductCarousel = () => {
   return (
     <div>
       <h2>Produtos disponíveis</h2>
-      {isLoading ? (
-        <Spinner />
+      {products.length !== 0 ? (
+        <>
+          <Slider {...settings}>
+            {products.map(product => (
+              <ProductCard
+                key={product.id}
+                id={product.id}
+                name={product.name}
+                description={product.description}
+                quantity={product.quantity}
+                url={product.url}
+                price={product.price}
+              />
+            ))}
+          </Slider>
+        </>
+
       ) : (
-        <Slider {...settings}>
-          {products.map(product => (
-            <ProductCard
-              key={product.id}
-              id={product.id}
-              name={product.name}
-              description={product.description}
-              quantity={product.quantity}
-              url={product.url}
-              price={product.price}
-            />
-          ))}
-        </Slider>
+        <Spinner />
       )}
     </div>
   );

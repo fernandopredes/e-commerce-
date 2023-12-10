@@ -1,13 +1,14 @@
 import { Link } from 'react-router-dom';
-import { CartContainer, CartCount, CartIcon, DropdownMenu, DropdownMenuItem, Nav, NavConteiner, NavItem, NavLink, NavList, SearchButton, SearchForm, SearchInput, StyledButton, StyledLink, User } from './NavbarStyles';
+import { CartContainer, CartCount, CartIcon, DropdownMenu, DropdownMenuItem, Nav, NavConteiner, NavItem, NavLink, NavList, SearchButton, SearchForm, SearchInput, StyledButton, StyledLink, User, UserIcon } from './NavbarStyles';
 import { useUser } from '../../contexts/UserContext';
 import { useNavigate } from 'react-router-dom';
 import logo from '../../assets/logo.png'
-import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+import { faShoppingCart, faUser } from '@fortawesome/free-solid-svg-icons';
 import { useEffect, useRef, useState } from 'react';
 import { fetchCategories, fetchSearchResults } from '../../api';
 import { Category } from '../../types/category';
 import CartModal from '../CartModal/CartModal';
+import Spinner from '../Spinner/Spinner';
 
 
 const Navbar = () => {
@@ -40,6 +41,7 @@ const Navbar = () => {
     logout();
     navigate('/');
     clearCart();
+    localStorage.removeItem('token');
   };
 
   const openCart = () => setIsCartOpen(true);
@@ -54,16 +56,16 @@ const Navbar = () => {
   };
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const handleSearchSubmit = (event: React.FormEvent) => {
+  const handleSearchSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     if (searchTerm.trim() === '') {
       setSearchResults([])
       return
     }
-    fetchSearchResults(searchTerm)
-      .then(data => {
-        setSearchResults(data);
-      });
+    const data = await fetchSearchResults(searchTerm);
+    setSearchResults(data)
+    navigate('/')
+
   };
 
   return (
@@ -87,19 +89,28 @@ const Navbar = () => {
             <CartIcon icon={faShoppingCart} />
             {cartItems.length > 0 && <CartCount>{totalQuantity}</CartCount>}
           </CartContainer>
+          {user && (
+          <Link to="/my-account">
+            <UserIcon icon={faUser} />
+          </Link>
+          )}
           <NavItem>
               <Link to="/">
                 <NavLink>Home</NavLink>
               </Link>
-            </NavItem>
-            <StyledButton onClick={() => setIsMenuOpen(!isMenuOpen)}>Categorias</StyledButton>
+          </NavItem>
+          <StyledButton onClick={() => setIsMenuOpen(!isMenuOpen)}>Categorias</StyledButton>
             {isMenuOpen && (
               <DropdownMenu ref={menuRef}>
-                {categories.map(category => (
-                  <DropdownMenuItem key={category.id}>
-                    <StyledLink to={`/category/${category.id}`}>{category.name}</StyledLink>
-                  </DropdownMenuItem>
-                ))}
+                {categories.length > 0 ? (
+                  categories.map(category => (
+                    <DropdownMenuItem key={category.id}>
+                      <StyledLink to={`/category/${category.id}`}>{category.name}</StyledLink>
+                    </DropdownMenuItem>
+                  ))
+                ) : (
+                  <Spinner />
+                )}
               </DropdownMenu>
             )}
             {user === null ?

@@ -12,11 +12,14 @@ const Home = () => {
         <img style={{maxWidth:'100%'}} src={banner} alt="banner de halloween" />
       </section>
       {searchResults.length > 0 && (
-        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
-          {searchResults.map(product => (
-            <ProductCard key={product.id} {...product} />
-          ))}
-        </div>
+        <>
+          <h2>Resultado da busca:</h2>
+          <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
+            {searchResults.map(product => (
+              <ProductCard key={product.id} {...product} />
+              ))}
+          </div>
+        </>
       )}
       <ProductCarousel/>
     </>
