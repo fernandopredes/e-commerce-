@@ -14,13 +14,14 @@ export const GhostSpinner = styled.div`
   flex-direction: column;
   span{
     margin-top: .5rem;
+    color: #e9e9e9;
   }
 `;
 
 export const Ghost = styled.div`
   width: 50px;
   height: 50px;
-  background-color: white;
+  background-color: #e9e9e9;
   border-radius: 50% 50% 0 0;
   position: relative;
   animation: ${float} 2s ease-in-out infinite;

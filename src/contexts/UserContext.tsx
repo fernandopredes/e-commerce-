@@ -33,7 +33,7 @@ interface UserContextProps {
 }
 
 
-const UserContext = createContext<UserContextProps | undefined>(undefined);
+export const UserContext = createContext<UserContextProps | undefined>(undefined);
 
 export const UserProvider = ({children}:UserProviderProps) => {
   const [user, setUser] = useState<User | null>(null);
