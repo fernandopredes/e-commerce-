@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { CartContainer, CartCount, CartIcon, DropdownMenu, DropdownMenuItem, Nav, NavConteiner, NavItem, NavLink, NavList, StyledButton, StyledLink, User } from './NavbarStyles';
+import { CartContainer, CartCount, CartIcon, DropdownMenu, DropdownMenuItem, Nav, NavConteiner, NavItem, NavLink, NavList, SearchButton, SearchForm, SearchInput, StyledButton, StyledLink, User } from './NavbarStyles';
 import { useUser } from '../../contexts/UserContext';
 import { useNavigate } from 'react-router-dom';
 import logo from '../../assets/logo.png'
@@ -57,7 +57,8 @@ const Navbar = () => {
   const handleSearchSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     if (searchTerm.trim() === '') {
-      return;
+      setSearchResults([])
+      return
     }
     fetchSearchResults(searchTerm)
       .then(data => {
@@ -77,10 +78,10 @@ const Navbar = () => {
         </User>
       </NavConteiner>
       <NavConteiner className='options'>
-        <form onSubmit={handleSearchSubmit}>
-          <input type="text" value={searchTerm} onChange={handleSearchChange} placeholder="Buscar itens..." />
-          <button type="submit">Buscar</button>
-        </form>
+      <SearchForm onSubmit={handleSearchSubmit}>
+        <SearchInput type="text" value={searchTerm} onChange={handleSearchChange} placeholder="Buscar itens..." />
+        <SearchButton type="submit">Buscar</SearchButton>
+      </SearchForm>
         <NavList>
           <CartContainer onClick={openCart}>
             <CartIcon icon={faShoppingCart} />

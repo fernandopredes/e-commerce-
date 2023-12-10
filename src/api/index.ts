@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-const BASE_URL = 'http://127.0.0.1:3000';
+const BASE_URL = 'https://ghost-store.onrender.com0';
 
 export const fetchProducts = () => {
   return fetch(`${BASE_URL}/items`)
