@@ -1,22 +1,20 @@
-import { useDispatch, useSelector } from 'react-redux';
+import {  useSelector } from 'react-redux';
 import { RootState } from "../../app/store";
 import { useUser } from '../../contexts/UserContext';
 import { Container, Item, ItemList, OrderDetails, PaymentMethod, SuccessMessage, Summary, Title } from './OrderConfirmationStyle';
 import witch from '../../assets/witch.jpg';
 import { useNavigate } from 'react-router-dom';
-import { clearCart } from '../../features/cart/cartTotalSlice';
 import { StyledButton } from '../../components/ProductCard/CardStyles';
 
 
 
 const OrderConfirmation = () => {
-    const { cartItems } = useUser();
+    const { cartItems, clearCart } = useUser();
     const { subtotal, discount, total, paymentMethod } = useSelector((state: RootState) => state.cartTotal);
     const navigate = useNavigate();
-    const dispatch = useDispatch();
 
     const handleGoHome = () => {
-      dispatch(clearCart())
+      clearCart();
       navigate('/')
   }
 

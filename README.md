@@ -44,6 +44,10 @@ npm run dev
 # ou
 yarn dev
 ```
+### Login
+
+O sistema de login é implementado utilizando a API DummyJson. Por isso, para efetuar o login com sucesso, é necessário usar um dos usuários listados na página de usuários do DummyJson. Esta implementação é apenas para fins de demonstração e testes.
+Use um dos usuários do seguinte link: https://dummyjson.com/users
 
 ### Funcionalidades
 

@@ -7,12 +7,15 @@ import { useUser } from '../../contexts/UserContext';
 import { useNavigate } from 'react-router-dom';
 
 
+
 const loginSchema = yup.object().shape({
+  username: yup.string().required("Nome de usuário é obrigatório"),
   email: yup.string().email("E-mail inválido").required("E-mail é obrigatório"),
-  password: yup.string().min(8, "A senha deve ter no mínimo 8 caracteres").required("Senha é obrigatória")
+  password: yup.string().min(4, "A senha deve ter no mínimo 4 caracteres").required("Senha é obrigatória")
 });
 
 type FormData = {
+  username?: string;
   email?: string;
   password?: string;
 };
@@ -27,16 +30,42 @@ const Login = () => {
   const { errors } = formState;
   const navigate = useNavigate();
 
-  const onSubmit = (data: FormData) => {
-    setUser({ fullName: "Usuário", email: data.email });
-    clearCart();
-    navigate('/');
+  const onSubmit = async (data: FormData) => {
+    try {
+      const response = await fetch('https://dummyjson.com/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          username: data.username,
+          password: data.password,
+        })
+      });
+
+      const responseData = await response.json();
+
+      if (responseData.token) {
+        localStorage.setItem('token', responseData.token);
+        localStorage.setItem('user', data.username!);
+        localStorage.setItem('email', data.email!);
+        setUser({ fullName: "Usuário", email: data.email });
+        clearCart();
+        navigate('/');
+      }
+    } catch (error) {
+      console.error('Erro no login:', error);
+    }
   }
 
   return (
     <Container>
       <FormContainer>
         <StyledForm onSubmit={handleSubmit(onSubmit)}>
+          <StyledInput
+            type="text"
+            placeholder="Nome de usuário"
+            {...register('username', { required: "Nome de usuário é obrigatório" })}
+          />
+          {errors.username && <ErrorText>{errors.username.message}</ErrorText>}
           <StyledInput
             type="email"
             placeholder="E-mail"

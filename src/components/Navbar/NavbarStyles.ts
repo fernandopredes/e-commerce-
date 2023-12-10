@@ -78,6 +78,12 @@ export const CartIcon = styled(FontAwesomeIcon)`
   margin-right: 1rem;
 `;
 
+export const UserIcon = styled(FontAwesomeIcon)`
+  font-size: 24px;
+  margin-right: 1rem;
+  color: #ffffff;
+`;
+
 export const CartCount = styled.span`
  position: absolute;
   top: -10px;
